@@ -46,6 +46,12 @@ tuki = 0.70 × (min(hyväksytytMenot, enimmäisMenot) − perusomavastuuosuus)
 
 Jokainen testi sisältää lakipykäläviitteen ja laskukaavan kommenttina. Testit käyttävät konkreettisia luokkia (ei mockeja).
 
+## API (Asumistuki.Api)
+
+REST API Minimal API -tyylillä. `POST /api/asumistuki/laske` ottaa `RuokakuntaInput`-JSON:n ja palauttaa `AsumistukiTulos`-JSON:n. Swagger UI käytössä. DI-rekisteröinti `Program.cs`:ssä — `KuntaryhmaService` Singleton, muut Transient.
+
+- Käynnistys: `dotnet run --project src/Asumistuki.Api`
+
 ## Testipenkki (Asumistuki.Testipenkki)
 
 Blazor Server -käyttöliittymä moduulin manuaaliseen testaukseen. Sijaitsee `src/Asumistuki.Testipenkki/`.

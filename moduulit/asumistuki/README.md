@@ -41,9 +41,11 @@ asumistuki/
 │   │       ├── AsumismenotLaskenta.cs
 │   │       ├── PerusomavastuuLaskenta.cs
 │   │       └── OmaisuustuloLaskenta.cs
-│   └── Asumistuki.Testipenkki/         # Blazor Server -testikäyttöliittymä
-│       ├── Components/Pages/Laskuri.razor
-│       └── Resources/Lokalisointi.resx (fi), .sv.resx (sv)
+│   ├── Asumistuki.Testipenkki/         # Blazor Server -testikäyttöliittymä
+│   │   ├── Components/Pages/Laskuri.razor
+│   │   └── Resources/Lokalisointi.resx (fi), .sv.resx (sv)
+│   └── Asumistuki.Api/                  # REST API + Swagger
+│       └── Program.cs
 └── tests/Asumistuki.Tests/
     ├── AsumistukiLaskuriTests.cs
     ├── AsumismenotLaskentaTests.cs
@@ -109,6 +111,32 @@ dotnet run --project src/Asumistuki.Testipenkki
 ```
 
 Avautuu osoitteessa `http://localhost:5233`.
+
+## API (Asumistuki.Api)
+
+REST API laskurimoduulin ohjelmalliseen käyttöön. Swagger UI dokumentaatiolla.
+
+### Käynnistys
+
+```bash
+dotnet run --project src/Asumistuki.Api
+```
+
+### Endpoint
+
+```
+POST /api/asumistuki/laske
+Content-Type: application/json
+
+{
+  "aikuiset": 1,
+  "lapset": 0,
+  "kunta": "Helsinki",
+  "vuokra": 800
+}
+```
+
+Swagger UI: `http://localhost:<port>/swagger`
 
 ## Testien ajaminen
 
