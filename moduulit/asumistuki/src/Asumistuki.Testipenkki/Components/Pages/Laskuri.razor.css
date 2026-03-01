@@ -1,0 +1,163 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #0066cc;
+}
+
+.header h1 {
+    margin: 0;
+    color: #0066cc;
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    margin: 0.25rem 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.lang-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-select select {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.laskuri-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .laskuri-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+legend {
+    font-weight: 600;
+    color: #333;
+    padding: 0 0.5rem;
+}
+
+.field {
+    margin-bottom: 0.75rem;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.field-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.field-check input[type="checkbox"] {
+    width: auto;
+}
+
+.field-check label {
+    font-size: 0.875rem;
+    color: #555;
+    margin: 0;
+}
+
+.laske-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.laske-btn:hover {
+    background: #0052a3;
+}
+
+.tulokset {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1.5rem;
+}
+
+.tulokset h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.tulokset table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tulokset td {
+    padding: 0.5rem 0.25rem;
+    border-bottom: 1px solid #eee;
+}
+
+.tulokset td.euro {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.tuen-maara {
+    font-size: 1.1rem;
+}
+
+.tuen-maara td {
+    border-bottom: 2px solid #0066cc;
+    padding: 0.75rem 0.25rem;
+}
+
+.kylla {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.ei {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.hylkays td {
+    color: #dc3545;
+}

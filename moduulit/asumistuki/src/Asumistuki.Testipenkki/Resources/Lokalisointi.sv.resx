@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Otsikko" xml:space="preserve"><value>Testkalkylator för bostadsbidrag</value></data>
+  <data name="Alaotsikko" xml:space="preserve"><value>Modulens testbänk — lag 938/2014</value></data>
+  <data name="Kieli" xml:space="preserve"><value>Språk</value></data>
+  <data name="OsioRuokakunta" xml:space="preserve"><value>Hushåll</value></data>
+  <data name="Aikuiset" xml:space="preserve"><value>Vuxna</value></data>
+  <data name="Lapset" xml:space="preserve"><value>Barn (under 18 år)</value></data>
+  <data name="OsioAsuminen" xml:space="preserve"><value>Boende</value></data>
+  <data name="Kunta" xml:space="preserve"><value>Kommun</value></data>
+  <data name="Vuokra" xml:space="preserve"><value>Hyra (€/mån)</value></data>
+  <data name="ErillinenLammitys" xml:space="preserve"><value>Separat uppvärmning</value></data>
+  <data name="ErillinenVesi" xml:space="preserve"><value>Separat vattenavgift</value></data>
+  <data name="Maakunta" xml:space="preserve"><value>Landskap (uppvärmningstillägg)</value></data>
+  <data name="MaakuntaEiValittu" xml:space="preserve"><value>— ej valt —</value></data>
+  <data name="AlivuokralaisenVuokra" xml:space="preserve"><value>Underhyresgästens hyra (€/mån)</value></data>
+  <data name="OsioTulot" xml:space="preserve"><value>Inkomster och förmögenhet</value></data>
+  <data name="BruttotulotKk" xml:space="preserve"><value>Bruttoinkomster (€/mån)</value></data>
+  <data name="NettoOmaisuus" xml:space="preserve"><value>Nettoförmögenhet (€)</value></data>
+  <data name="OsioMuut" xml:space="preserve"><value>Övriga uppgifter</value></data>
+  <data name="VammaisenLisatila" xml:space="preserve"><value>Tilläggsrum för funktionshindrad</value></data>
+  <data name="LaskePainike" xml:space="preserve"><value>Beräkna bostadsbidrag</value></data>
+  <data name="OsioTulokset" xml:space="preserve"><value>Resultat</value></data>
+  <data name="HyvaksytytMenot" xml:space="preserve"><value>Godkända boendeutgifter</value></data>
+  <data name="EnimmaisMenot" xml:space="preserve"><value>Maximala boendeutgifter</value></data>
+  <data name="HuomioitavatMenot" xml:space="preserve"><value>Beaktade utgifter</value></data>
+  <data name="Perusomavastuuosuus" xml:space="preserve"><value>Grundsjälvriskandel</value></data>
+  <data name="TuenMaara" xml:space="preserve"><value>Bidragsbelopp</value></data>
+  <data name="Maksetaanko" xml:space="preserve"><value>Betalas det</value></data>
+  <data name="Kylla" xml:space="preserve"><value>Ja</value></data>
+  <data name="Ei" xml:space="preserve"><value>Nej</value></data>
+  <data name="HylkaysPeruste" xml:space="preserve"><value>Avslagsgrund</value></data>
+  <data name="EuroKk" xml:space="preserve"><value>€/mån</value></data>
+</root>

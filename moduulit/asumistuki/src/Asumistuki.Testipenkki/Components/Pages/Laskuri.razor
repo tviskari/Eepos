@@ -1,0 +1,186 @@
+@page "/"
+@rendermode InteractiveServer
+@inject IAsumistukiLaskuri TukiLaskuri
+@inject IStringLocalizer<Lokalisointi> L
+@using System.Globalization
+
+<PageTitle>@L["Otsikko"]</PageTitle>
+
+<header class="header">
+    <div>
+        <h1>@L["Otsikko"]</h1>
+        <p class="subtitle">@L["Alaotsikko"]</p>
+    </div>
+    <div class="lang-select">
+        <label>@L["Kieli"]:</label>
+        <select @onchange="VaihdaKieli">
+            <option value="fi" selected="@(_kieli == "fi")">Suomi</option>
+            <option value="sv" selected="@(_kieli == "sv")">Svenska</option>
+        </select>
+    </div>
+</header>
+
+<div class="laskuri-grid">
+    <section class="lomake">
+        <fieldset>
+            <legend>@L["OsioRuokakunta"]</legend>
+            <div class="field">
+                <label>@L["Aikuiset"]</label>
+                <input type="number" min="1" @bind="_input.Aikuiset" />
+            </div>
+            <div class="field">
+                <label>@L["Lapset"]</label>
+                <input type="number" min="0" @bind="_input.Lapset" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@L["OsioAsuminen"]</legend>
+            <div class="field">
+                <label>@L["Kunta"]</label>
+                <input type="text" @bind="_input.Kunta" />
+            </div>
+            <div class="field">
+                <label>@L["Vuokra"]</label>
+                <input type="number" min="0" step="0.01" @bind="_input.Vuokra" />
+            </div>
+            <div class="field-check">
+                <input type="checkbox" id="lammitys" @bind="_input.ErillinenLammitys" />
+                <label for="lammitys">@L["ErillinenLammitys"]</label>
+            </div>
+            <div class="field-check">
+                <input type="checkbox" id="vesi" @bind="_input.ErillinenVesi" />
+                <label for="vesi">@L["ErillinenVesi"]</label>
+            </div>
+            <div class="field">
+                <label>@L["Maakunta"]</label>
+                <select @bind="_maakunta">
+                    <option value="">@L["MaakuntaEiValittu"]</option>
+                    <option value="Etelä-Savo">Etelä-Savo</option>
+                    <option value="Pohjois-Savo">Pohjois-Savo</option>
+                    <option value="Pohjois-Karjala">Pohjois-Karjala</option>
+                    <option value="Pohjois-Pohjanmaa">Pohjois-Pohjanmaa</option>
+                    <option value="Kainuu">Kainuu</option>
+                    <option value="Lappi">Lappi</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>@L["AlivuokralaisenVuokra"]</label>
+                <input type="number" min="0" step="0.01" @bind="_input.AlivuokralaisenVuokra" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@L["OsioTulot"]</legend>
+            <div class="field">
+                <label>@L["BruttotulotKk"]</label>
+                <input type="number" min="0" step="0.01" @bind="_input.BruttotulotKk" />
+            </div>
+            <div class="field">
+                <label>@L["NettoOmaisuus"]</label>
+                <input type="number" step="0.01" @bind="_nettoOmaisuus" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@L["OsioMuut"]</legend>
+            <div class="field-check">
+                <input type="checkbox" id="vammainen" @bind="_input.VammaisenLisatila" />
+                <label for="vammainen">@L["VammaisenLisatila"]</label>
+            </div>
+        </fieldset>
+
+        <button class="laske-btn" @onclick="LaskeTuki">@L["LaskePainike"]</button>
+    </section>
+
+    @if (_tulos is not null)
+    {
+        <section class="tulokset">
+            <h2>@L["OsioTulokset"]</h2>
+            <table>
+                <tr>
+                    <td>@L["HyvaksytytMenot"]</td>
+                    <td class="euro">@_tulos.HyvaksytytMenot.ToString("F2") @L["EuroKk"]</td>
+                </tr>
+                <tr>
+                    <td>@L["EnimmaisMenot"]</td>
+                    <td class="euro">@_tulos.EnimmaisMenot.ToString("F2") @L["EuroKk"]</td>
+                </tr>
+                <tr>
+                    <td>@L["HuomioitavatMenot"]</td>
+                    <td class="euro">@_tulos.HuomioitavatMenot.ToString("F2") @L["EuroKk"]</td>
+                </tr>
+                <tr>
+                    <td>@L["Perusomavastuuosuus"]</td>
+                    <td class="euro">@_tulos.Perusomavastuuosuus.ToString("F2") @L["EuroKk"]</td>
+                </tr>
+                <tr class="tuen-maara">
+                    <td><strong>@L["TuenMaara"]</strong></td>
+                    <td class="euro"><strong>@_tulos.TuenMaara.ToString("F2") @L["EuroKk"]</strong></td>
+                </tr>
+                <tr>
+                    <td>@L["Maksetaanko"]</td>
+                    <td class="@(_tulos.Maksetaanko ? "kylla" : "ei")">
+                        @(_tulos.Maksetaanko ? L["Kylla"] : L["Ei"])
+                    </td>
+                </tr>
+                @if (_tulos.HylkaysPeruste is not null)
+                {
+                    <tr class="hylkays">
+                        <td>@L["HylkaysPeruste"]</td>
+                        <td>@_tulos.HylkaysPeruste</td>
+                    </tr>
+                }
+            </table>
+        </section>
+    }
+</div>
+
+@code {
+    private InputModel _input = new();
+    private AsumistukiTulos? _tulos;
+    private string _maakunta = "";
+    private decimal? _nettoOmaisuus;
+    private string _kieli = "fi";
+
+    private void LaskeTuki()
+    {
+        var ruokakunta = new RuokakuntaInput
+        {
+            Aikuiset = Math.Max(_input.Aikuiset, 1),
+            Lapset = Math.Max(_input.Lapset, 0),
+            Kunta = _input.Kunta ?? "",
+            Vuokra = _input.Vuokra,
+            ErillinenLammitys = _input.ErillinenLammitys,
+            ErillinenVesi = _input.ErillinenVesi,
+            Maakunta = string.IsNullOrEmpty(_maakunta) ? null : _maakunta,
+            AlivuokralaisenVuokra = _input.AlivuokralaisenVuokra,
+            BruttotulotKk = _input.BruttotulotKk,
+            NettoOmaisuus = _nettoOmaisuus,
+            VammaisenLisatila = _input.VammaisenLisatila
+        };
+
+        _tulos = TukiLaskuri.Laske(ruokakunta);
+    }
+
+    private void VaihdaKieli(ChangeEventArgs e)
+    {
+        _kieli = e.Value?.ToString() ?? "fi";
+        var culture = new CultureInfo(_kieli);
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+    }
+
+    private class InputModel
+    {
+        public int Aikuiset { get; set; } = 1;
+        public int Lapset { get; set; }
+        public string Kunta { get; set; } = "Helsinki";
+        public decimal Vuokra { get; set; } = 800m;
+        public bool ErillinenLammitys { get; set; }
+        public bool ErillinenVesi { get; set; }
+        public decimal AlivuokralaisenVuokra { get; set; }
+        public decimal BruttotulotKk { get; set; }
+        public bool VammaisenLisatila { get; set; }
+    }
+}

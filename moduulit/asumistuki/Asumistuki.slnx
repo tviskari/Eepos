@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Asumistuki.Testipenkki/Asumistuki.Testipenkki.csproj" />
+    <Project Path="src/Asumistuki/Asumistuki.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Asumistuki.Tests/Asumistuki.Tests.csproj" />
+  </Folder>
+</Solution>
