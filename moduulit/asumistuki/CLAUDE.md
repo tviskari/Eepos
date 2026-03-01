@@ -33,9 +33,12 @@ tuki = 0.70 × (min(hyväksytytMenot, enimmäisMenot) − perusomavastuuosuus)
 | `Services/AsumismenotLaskenta.cs` | Vuokra + vesi + lämmitys, enimmäismenot-taulukko |
 | `Services/PerusomavastuuLaskenta.cs` | Tuloraja, 50% omavastuu |
 | `Services/OmaisuustuloLaskenta.cs` | Omaisuusraja, omaisuustulo |
-| `Services/KuntaryhmaService.cs` | Kuntien luokittelu ryhmiin I/II/III |
 | `Models/RuokakuntaInput.cs` | Syöte-record |
 | `Models/AsumistukiTulos.cs` | Tulos-record |
+
+## Riippuvuudet
+
+- **Eepos.Kunnat** (`kirjastot/Eepos.Kunnat/`) — kuntaryhmät, maakunnat, kuntalista. Namespace: `Eepos.Kunnat`. Sisältää `IKuntaryhmaService`, `KuntaryhmaService`, `Kuntaryhma`.
 
 ## Testit
 
@@ -58,4 +61,4 @@ Blazor Server -käyttöliittymä moduulin manuaaliseen testaukseen. Sijaitsee `s
 - Euromäärät ovat lakitekstin perusarvoja, indeksitarkistus tuotannossa
 - Lisää aina testi uudelle toiminnallisuudelle, viittaa pykälään
 - Enimmäismenot-taulukko on `AsumismenotLaskenta.cs`:n `Enimmaismenot`-dictionaryssa
-- Kuntalistat ovat `KuntaryhmaService.cs`:n HashSet-rakenteissa
+- Kuntadata on eriytetty `Eepos.Kunnat`-kirjastoon (`kirjastot/Eepos.Kunnat/`)

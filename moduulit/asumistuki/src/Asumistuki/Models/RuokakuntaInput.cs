@@ -13,7 +13,6 @@ public record RuokakuntaInput
     public decimal Vuokra { get; init; }          // €/kk
     public bool ErillinenLammitys { get; init; }  // lämmitys ei sisälly vuokraan
     public bool ErillinenVesi { get; init; }      // vesimaksu ei sisälly vuokraan
-    public string? Maakunta { get; init; }        // lämmityskorotusta varten (§9.2)
     public decimal AlivuokralaisenVuokra { get; init; } // §9.3
 
     // Tulot (§12)

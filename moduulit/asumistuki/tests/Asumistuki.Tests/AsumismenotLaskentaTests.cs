@@ -1,12 +1,13 @@
 using Asumistuki.Contracts;
 using Asumistuki.Models;
 using Asumistuki.Services;
+using Eepos.Kunnat;
 
 namespace Asumistuki.Tests;
 
 public class AsumismenotLaskentaTests
 {
-    private readonly IAsumismenotLaskenta _sut = new AsumismenotLaskenta();
+    private readonly IAsumismenotLaskenta _sut = new AsumismenotLaskenta(new KuntaryhmaService());
 
     [Fact]
     public void PelkkaVuokra_PalauttaaVuokran()
@@ -58,13 +59,13 @@ public class AsumismenotLaskentaTests
     [Fact]
     public void LammitysKorotus_Lappi_8Prosenttia()
     {
-        // §9.2: Lappi → lämmitys × 1.08
+        // §9.2: Sodankylä → Lappi → lämmitys × 1.08
         // 1 hlö: lämmitys = 38 × 1.08 = 41.04
         // 500 + 41.04 = 541.04
         var input = new RuokakuntaInput
         {
-            Vuokra = 500m, Aikuiset = 1,
-            ErillinenLammitys = true, Maakunta = "Lappi"
+            Vuokra = 500m, Aikuiset = 1, Kunta = "Sodankylä",
+            ErillinenLammitys = true
         };
         Assert.Equal(541.04m, _sut.LaskeHyvaksytytMenot(input));
     }
@@ -72,13 +73,13 @@ public class AsumismenotLaskentaTests
     [Fact]
     public void LammitysKorotus_PohjoisSavo_4Prosenttia()
     {
-        // §9.2: Pohjois-Savo → lämmitys × 1.04
+        // §9.2: Kuopio → Pohjois-Savo → lämmitys × 1.04
         // 1 hlö: lämmitys = 38 × 1.04 = 39.52
         // 500 + 39.52 = 539.52
         var input = new RuokakuntaInput
         {
-            Vuokra = 500m, Aikuiset = 1,
-            ErillinenLammitys = true, Maakunta = "Pohjois-Savo"
+            Vuokra = 500m, Aikuiset = 1, Kunta = "Kuopio",
+            ErillinenLammitys = true
         };
         Assert.Equal(539.52m, _sut.LaskeHyvaksytytMenot(input));
     }

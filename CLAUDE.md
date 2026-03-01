@@ -8,8 +8,10 @@ Eepos on suomalaisen sosiaaliturvalainsäädännön laskentajärjestelmä. Moduu
 
 ```
 Eepos/
+├── kirjastot/
+│   └── Eepos.Kunnat/     # Yhteinen kuntakirjasto (kuntaryhmät, maakunnat, 307 kuntaa)
 └── moduulit/
-    └── asumistuki/    # Yleinen asumistuki (laki 938/2014)
+    └── asumistuki/        # Yleinen asumistuki (laki 938/2014)
 ```
 
 Moduulikohtaiset CLAUDE.md-tiedostot sisältävät yksityiskohtaiset ohjeet.

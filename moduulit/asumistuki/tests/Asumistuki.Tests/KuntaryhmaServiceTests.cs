@@ -1,6 +1,4 @@
-using Asumistuki.Contracts;
-using Asumistuki.Models;
-using Asumistuki.Services;
+using Eepos.Kunnat;
 
 namespace Asumistuki.Tests;
 
@@ -50,5 +48,50 @@ public class KuntaryhmaServiceTests
     {
         Assert.Equal(Kuntaryhma.I, _sut.Hae("helsinki"));
         Assert.Equal(Kuntaryhma.I, _sut.Hae("HELSINKI"));
+    }
+
+    [Theory]
+    [InlineData("Helsinki", "Uusimaa")]
+    [InlineData("Sodankylä", "Lappi")]
+    [InlineData("Kuopio", "Pohjois-Savo")]
+    [InlineData("Kajaani", "Kainuu")]
+    [InlineData("Mikkeli", "Etelä-Savo")]
+    [InlineData("Joensuu", "Pohjois-Karjala")]
+    [InlineData("Oulu", "Pohjois-Pohjanmaa")]
+    [InlineData("Maarianhamina", "Ahvenanmaa")]
+    public void HaeMaakunta_PalauttaaMaakunnan(string kunta, string odotettu)
+    {
+        // §9.2: kunnan maakunta lämmityskorotusta varten
+        Assert.Equal(odotettu, _sut.HaeMaakunta(kunta));
+    }
+
+    [Fact]
+    public void HaeMaakunta_TuntematonKunta_PalauttaaNull()
+    {
+        Assert.Null(_sut.HaeMaakunta("TuntematonKunta"));
+    }
+
+    [Fact]
+    public void HaeMaakunta_CaseInsensitive()
+    {
+        Assert.Equal("Uusimaa", _sut.HaeMaakunta("helsinki"));
+        Assert.Equal("Lappi", _sut.HaeMaakunta("SODANKYLÄ"));
+    }
+
+    [Fact]
+    public void HaeKaikkiKunnat_PalauttaaKaikkiKunnat()
+    {
+        // Speksin kuntalistan mukaan 307 kuntaa
+        var kunnat = _sut.HaeKaikkiKunnat();
+        Assert.Equal(307, kunnat.Count);
+    }
+
+    [Fact]
+    public void HaeKaikkiKunnat_SisaltaaHelsinginJaSodankylan()
+    {
+        var kunnat = _sut.HaeKaikkiKunnat();
+        Assert.Contains("Helsinki", kunnat);
+        Assert.Contains("Sodankylä", kunnat);
+        Assert.Contains("Maarianhamina", kunnat);
     }
 }

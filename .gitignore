@@ -15,3 +15,5 @@ obj/
 # Claude Code
 .claude/settings.local.json
 .claude/launch.json
+moduulit/asumistuki/.claude/launch.json
+moduulit/asumistuki/.claude/settings.local.json

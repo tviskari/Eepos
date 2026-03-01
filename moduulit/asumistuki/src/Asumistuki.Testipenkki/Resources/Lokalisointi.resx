@@ -27,8 +27,6 @@
   <data name="Vuokra" xml:space="preserve"><value>Vuokra (€/kk)</value></data>
   <data name="ErillinenLammitys" xml:space="preserve"><value>Erillinen lämmitys</value></data>
   <data name="ErillinenVesi" xml:space="preserve"><value>Erillinen vesimaksu</value></data>
-  <data name="Maakunta" xml:space="preserve"><value>Maakunta (lämmityskorotus)</value></data>
-  <data name="MaakuntaEiValittu" xml:space="preserve"><value>— ei valittu —</value></data>
   <data name="AlivuokralaisenVuokra" xml:space="preserve"><value>Alivuokralaisen vuokra (€/kk)</value></data>
   <data name="OsioTulot" xml:space="preserve"><value>Tulot ja omaisuus</value></data>
   <data name="BruttotulotKk" xml:space="preserve"><value>Bruttotulot (€/kk)</value></data>

@@ -1,13 +1,14 @@
 using Asumistuki.Contracts;
 using Asumistuki.Models;
 using Asumistuki.Services;
+using Eepos.Kunnat;
 
 namespace Asumistuki.Tests;
 
 public class AsumistukiLaskuriTests
 {
     private readonly IAsumistukiLaskuri _sut = new AsumistukiLaskuri(
-        new AsumismenotLaskenta(),
+        new AsumismenotLaskenta(new KuntaryhmaService()),
         new PerusomavastuuLaskenta(),
         new OmaisuustuloLaskenta(),
         new KuntaryhmaService()
@@ -126,7 +127,7 @@ public class AsumistukiLaskuriTests
         var input = new RuokakuntaInput
         {
             Aikuiset = 1, Lapset = 1,
-            Kunta = "Sodankylä", Maakunta = "Lappi",
+            Kunta = "Sodankylä",
             Vuokra = 400m,
             ErillinenVesi = true, ErillinenLammitys = true,
             BruttotulotKk = 0m

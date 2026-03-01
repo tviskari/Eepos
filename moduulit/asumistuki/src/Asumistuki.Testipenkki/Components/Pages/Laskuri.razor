@@ -1,6 +1,7 @@
 @page "/"
 @rendermode InteractiveServer
 @inject IAsumistukiLaskuri TukiLaskuri
+@inject IKuntaryhmaService KuntaryhmaService
 @inject IStringLocalizer<Lokalisointi> L
 @using System.Globalization
 
@@ -38,7 +39,12 @@
             <legend>@L["OsioAsuminen"]</legend>
             <div class="field">
                 <label>@L["Kunta"]</label>
-                <input type="text" @bind="_input.Kunta" />
+                <select @bind="_input.Kunta">
+                    @foreach (var kunta in _kunnat)
+                    {
+                        <option value="@kunta">@kunta</option>
+                    }
+                </select>
             </div>
             <div class="field">
                 <label>@L["Vuokra"]</label>
@@ -51,18 +57,6 @@
             <div class="field-check">
                 <input type="checkbox" id="vesi" @bind="_input.ErillinenVesi" />
                 <label for="vesi">@L["ErillinenVesi"]</label>
-            </div>
-            <div class="field">
-                <label>@L["Maakunta"]</label>
-                <select @bind="_maakunta">
-                    <option value="">@L["MaakuntaEiValittu"]</option>
-                    <option value="Etelä-Savo">Etelä-Savo</option>
-                    <option value="Pohjois-Savo">Pohjois-Savo</option>
-                    <option value="Pohjois-Karjala">Pohjois-Karjala</option>
-                    <option value="Pohjois-Pohjanmaa">Pohjois-Pohjanmaa</option>
-                    <option value="Kainuu">Kainuu</option>
-                    <option value="Lappi">Lappi</option>
-                </select>
             </div>
             <div class="field">
                 <label>@L["AlivuokralaisenVuokra"]</label>
@@ -139,9 +133,15 @@
 @code {
     private InputModel _input = new();
     private AsumistukiTulos? _tulos;
-    private string _maakunta = "";
     private decimal? _nettoOmaisuus;
     private string _kieli = "fi";
+    private IReadOnlyList<string> _kunnat = [];
+
+    protected override void OnInitialized()
+    {
+        _kunnat = KuntaryhmaService.HaeKaikkiKunnat();
+        _input.Kunta = _kunnat[0];
+    }
 
     private void LaskeTuki()
     {
@@ -153,7 +153,6 @@
             Vuokra = _input.Vuokra,
             ErillinenLammitys = _input.ErillinenLammitys,
             ErillinenVesi = _input.ErillinenVesi,
-            Maakunta = string.IsNullOrEmpty(_maakunta) ? null : _maakunta,
             AlivuokralaisenVuokra = _input.AlivuokralaisenVuokra,
             BruttotulotKk = _input.BruttotulotKk,
             NettoOmaisuus = _nettoOmaisuus,
@@ -175,7 +174,7 @@
     {
         public int Aikuiset { get; set; } = 1;
         public int Lapset { get; set; }
-        public string Kunta { get; set; } = "Helsinki";
+        public string Kunta { get; set; } = "";
         public decimal Vuokra { get; set; } = 800m;
         public bool ErillinenLammitys { get; set; }
         public bool ErillinenVesi { get; set; }

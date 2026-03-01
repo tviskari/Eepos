@@ -1,10 +1,18 @@
 using Asumistuki.Contracts;
 using Asumistuki.Models;
+using Eepos.Kunnat;
 
 namespace Asumistuki.Services;
 
 public class AsumismenotLaskenta : IAsumismenotLaskenta
 {
+    private readonly IKuntaryhmaService _kuntaryhma;
+
+    public AsumismenotLaskenta(IKuntaryhmaService kuntaryhma)
+    {
+        _kuntaryhma = kuntaryhma;
+    }
+
     // §10.1: Enimmäisasumismenot (kuntaryhmä, henkilömäärä) → €/kk
     private static readonly Dictionary<(Kuntaryhma, int), decimal> Enimmaismenot = new()
     {
@@ -61,12 +69,13 @@ public class AsumismenotLaskenta : IAsumismenotLaskenta
         {
             decimal lammitys = 38m + 13m * (henkilomaara - 1);
 
-            // §9.2: Maakuntakorotus
-            if (input.Maakunta is not null)
+            // §9.2: Maakuntakorotus — johdetaan kunnasta automaattisesti
+            var maakunta = _kuntaryhma.HaeMaakunta(input.Kunta);
+            if (maakunta is not null)
             {
-                if (Korotus8.Contains(input.Maakunta))
+                if (Korotus8.Contains(maakunta))
                     lammitys *= 1.08m;
-                else if (Korotus4.Contains(input.Maakunta))
+                else if (Korotus4.Contains(maakunta))
                     lammitys *= 1.04m;
             }
 

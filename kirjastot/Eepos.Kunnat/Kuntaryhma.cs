@@ -1,4 +1,4 @@
-namespace Asumistuki.Models;
+namespace Eepos.Kunnat;
 
 public enum Kuntaryhma
 {

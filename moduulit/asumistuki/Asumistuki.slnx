@@ -6,4 +6,5 @@
   <Folder Name="/tests/">
     <Project Path="tests/Asumistuki.Tests/Asumistuki.Tests.csproj" />
   </Folder>
+  <Project Path="../../kirjastot/Eepos.Kunnat/Eepos.Kunnat.csproj" />
 </Solution>

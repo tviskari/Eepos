@@ -2,6 +2,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Asumistuki.Contracts;
 using Asumistuki.Services;
+using Eepos.Kunnat;
 using Asumistuki.Testipenkki.Components;
 
 var builder = WebApplication.CreateBuilder(args);

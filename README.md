@@ -6,6 +6,8 @@ Suomalaisen sosiaaliturvalainsäädännön laskentajärjestelmä. Jokainen etuus
 
 ```
 Eepos/
+├── kirjastot/             # Yhteiset kirjastot
+│   └── Eepos.Kunnat/     # Kuntadata: kuntaryhmät, maakunnat (307 kuntaa)
 └── moduulit/              # Laskentamoduulit
     └── asumistuki/        # Yleinen asumistuki (938/2014)
 ```

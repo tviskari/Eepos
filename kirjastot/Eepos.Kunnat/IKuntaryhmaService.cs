@@ -1,0 +1,22 @@
+namespace Eepos.Kunnat;
+
+/// <summary>
+/// §10.3: Palauttaa kunnan kuntaryhmän (I/II/III).
+/// I: Helsinki, Espoo, Kauniainen, Vantaa
+/// II: 24 nimettyä kuntaa (§10.3 kohta 2)
+/// III: kaikki muut
+/// </summary>
+public interface IKuntaryhmaService
+{
+    Kuntaryhma Hae(string kunta);
+
+    /// <summary>
+    /// §9.2: Palauttaa kunnan maakunnan lämmityskorotuksen määrittelyä varten.
+    /// </summary>
+    string? HaeMaakunta(string kunta);
+
+    /// <summary>
+    /// Palauttaa kaikki Suomen kunnat aakkosjärjestyksessä.
+    /// </summary>
+    IReadOnlyList<string> HaeKaikkiKunnat();
+}

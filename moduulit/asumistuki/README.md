@@ -20,6 +20,7 @@ Keskeisiä sääntöjä:
 - .NET 8+
 - C# 12
 - xUnit (testit)
+- Eepos.Kunnat (`kirjastot/Eepos.Kunnat/`) — kuntaryhmät, maakunnat, kuntalista
 
 ## Projektirakenne
 
@@ -31,18 +32,15 @@ asumistuki/
 │   │   │   ├── IAsumistukiLaskuri.cs
 │   │   │   ├── IAsumismenotLaskenta.cs
 │   │   │   ├── IPerusomavastuuLaskenta.cs
-│   │   │   ├── IOmaisuustuloLaskenta.cs
-│   │   │   └── IKuntaryhmaService.cs
+│   │   │   └── IOmaisuustuloLaskenta.cs
 │   │   ├── Models/                     # Tietomallit
 │   │   │   ├── RuokakuntaInput.cs
-│   │   │   ├── AsumistukiTulos.cs
-│   │   │   └── Kuntaryhma.cs
+│   │   │   └── AsumistukiTulos.cs
 │   │   └── Services/                   # Toteutukset
 │   │       ├── AsumistukiLaskuri.cs
 │   │       ├── AsumismenotLaskenta.cs
 │   │       ├── PerusomavastuuLaskenta.cs
-│   │       ├── OmaisuustuloLaskenta.cs
-│   │       └── KuntaryhmaService.cs
+│   │       └── OmaisuustuloLaskenta.cs
 │   └── Asumistuki.Testipenkki/         # Blazor Server -testikäyttöliittymä
 │       ├── Components/Pages/Laskuri.razor
 │       └── Resources/Lokalisointi.resx (fi), .sv.resx (sv)
@@ -78,11 +76,12 @@ asumistuki/
 ## Käyttöesimerkki
 
 ```csharp
+var kuntaryhma = new KuntaryhmaService();
 var laskuri = new AsumistukiLaskuri(
-    new AsumismenotLaskenta(),
+    new AsumismenotLaskenta(kuntaryhma),
     new PerusomavastuuLaskenta(),
     new OmaisuustuloLaskenta(),
-    new KuntaryhmaService()
+    kuntaryhma
 );
 
 var input = new RuokakuntaInput

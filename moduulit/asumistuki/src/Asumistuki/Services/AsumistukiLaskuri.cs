@@ -1,5 +1,6 @@
 using Asumistuki.Contracts;
 using Asumistuki.Models;
+using Eepos.Kunnat;
 
 namespace Asumistuki.Services;
 

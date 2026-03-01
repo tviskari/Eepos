@@ -27,8 +27,6 @@
   <data name="Vuokra" xml:space="preserve"><value>Hyra (€/mån)</value></data>
   <data name="ErillinenLammitys" xml:space="preserve"><value>Separat uppvärmning</value></data>
   <data name="ErillinenVesi" xml:space="preserve"><value>Separat vattenavgift</value></data>
-  <data name="Maakunta" xml:space="preserve"><value>Landskap (uppvärmningstillägg)</value></data>
-  <data name="MaakuntaEiValittu" xml:space="preserve"><value>— ej valt —</value></data>
   <data name="AlivuokralaisenVuokra" xml:space="preserve"><value>Underhyresgästens hyra (€/mån)</value></data>
   <data name="OsioTulot" xml:space="preserve"><value>Inkomster och förmögenhet</value></data>
   <data name="BruttotulotKk" xml:space="preserve"><value>Bruttoinkomster (€/mån)</value></data>
