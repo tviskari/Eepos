@@ -1,0 +1,4 @@
+project_name = "eepos"
+environment  = "dev"
+location     = "northeurope"
+image_tag    = "latest"
